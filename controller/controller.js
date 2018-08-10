@@ -31,20 +31,21 @@ router.get('/clearAll', function(req, res) {
   res.redirect("/")
 });
    
-router.delete('/deleteArticle/id:', function(req, res) {
+router.delete('/deleteArticle/:id', function(req, res) {
   console.log("hello delete");
   db.Article.findByIdAndRemove(req.params.id,(err,doc)=>{
     if(err) {
       console.log(err);
       return res.status(500).send(err);
     }
-    const response= {
-      message: "article successfully deleted",
-      id: db.article._id,
-    };
-    return res.status(200).send(response).redirect("/");
+    console.log(doc)
+    const  message= "article id="+doc._id +" successfully deleted";
+
+    console.log(message)
+    res.status(200).send("message");
     
   });
+  
   
 });
 
@@ -58,6 +59,7 @@ router.get("/scrape", function(req, res) {
       //var titleArr=[]; 
       // Now, we grab every h2 within an article tag, and do the following:
      
+
     
       $("a.story-link").each(function(i, element) {
         // Save an empty result object
