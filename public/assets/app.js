@@ -29,7 +29,7 @@ $(document).on("click", ".comments", function() {
   })
     // With that done, add the note information to the page
     .then(function(data) {
-      console.log(data);
+      console.log("new data is",data);
       // The title of the article
       $("#notes").append("<h2>" + data.title + "</h2>");
       // An input to enter a new title
@@ -38,7 +38,9 @@ $(document).on("click", ".comments", function() {
       $("#notes").append("<textarea id='bodyinput' name='body'></textarea>");
       // A button to submit a new note, with the id of the article saved to it
       $("#notes").append("<button data-id='" + data._id + "' id='savenote'>Save Note</button>");
-      $("#notes").append("<button data-id='" + data._id + "' id='deletenote'>delete Note</button>");
+      $("#notes").append("<button data-id='" + data.note._id + "' id='deletenote'>delete Note</button>");
+
+      console.log("note id is ",data.note._id)
 
       // If there's a note in the article
       if (data.note) {
@@ -105,7 +107,7 @@ $(document).on("click", "#deletenote", function(e) {
   e.preventDefault();
   console.log("clicked from deleted note button");
   let id=$(this).data("id");
-  console.log(id);
+  console.log("inside event",id);
 
   $.ajax({
     url:'/deleteNote/'+id,
