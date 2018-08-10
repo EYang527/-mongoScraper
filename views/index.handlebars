@@ -1,0 +1,24 @@
+ 
+ <div class="alert alert-success" role="alert">
+     ***   Scrape News article Page    ***
+</div>
+ 
+ 
+ {{#each article}}
+ {{#unless saved}}
+<div class="card" style="width:40rem;">
+  <h5 class="card-header">written by {{author}}</h5>
+  <div class="card-body">
+    <h5 class="card-title">{{title}}</h5>
+    <p class="card-text">{{summary}}</p>
+    <img src={{image}} height=300 width=550> </img>
+     <p class="card-text"><small class="text-muted"><a href={{link}}>[more info]</a></small></p>
+    <a href="/Saved_article/{{_id}}"><button type="button" class="btn btn-primary float-right" id="{{_id}}">Save article</button></a>
+
+  
+  </div>
+</div>
+{{/unless}}
+{{/each}}
+
+

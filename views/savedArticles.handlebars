@@ -1,0 +1,30 @@
+  
+ <div class="alert alert-info" role="alert">
+     ***   Saved article Page    ***
+</div>
+ 
+ 
+ 
+ {{#each article}}
+ {{#if saved}}
+<div class="card" style="width:40rem;">
+  <h5 class="card-header">written by {{author}}</h5>
+  <div class="card-body">
+    <h5 class="card-title">{{title}}</h5>
+    <p class="card-text">{{summary}}</p>
+    <img src={{image}} height=300 width=550> </img>
+     <p class="card-text"><small class="text-muted"><a href={{link}}>[more info]</a></small></p>
+    <button type="button" class="btn btn-success float-right comments" id="{{_id}}">Leave comments</button><a href="/deleted/{{_id}}"><button type="button" class="btn btn-primary float-right" id="{{_id}}">Deleted </button></a>
+   {{!-- <form action="/" method="POST">
+        <textarea rows="4" cols="50" id="burgerName" type="text" size:"100" name="burgerName" placeholder="create your burger"></textarea>
+        <button id="submitBurger" type="submit"> Submit </button>
+    </form> --}}
+  
+  </div>
+</div>
+{{/if}}
+{{/each}}
+
+
+<div id="articles"></div>
+<div id="notes"></div>
