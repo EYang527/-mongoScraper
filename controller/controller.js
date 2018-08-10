@@ -49,6 +49,25 @@ router.delete('/deleteArticle/:id', function(req, res) {
   
 });
 
+router.delete('/deleteNote/:id', function(req, res) {
+  console.log("hello delete");
+  db.Note.remove({_id:req.params.id},(err,doc)=>{
+    if(err) {
+      console.log(err);
+      return res.status(500).send(err);
+    }
+    console.log(doc)
+    const  message= "note successfully deleted from article #"+req.params.id;
+
+    console.log(message)
+    res.status(200).send("message");
+    
+  });
+  
+  
+});
+
+
 // A GET route for scraping the echoJS website
 router.get("/scrape", function(req, res) {
     // First, we grab the body of the html with request

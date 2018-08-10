@@ -38,6 +38,7 @@ $(document).on("click", ".comments", function() {
       $("#notes").append("<textarea id='bodyinput' name='body'></textarea>");
       // A button to submit a new note, with the id of the article saved to it
       $("#notes").append("<button data-id='" + data._id + "' id='savenote'>Save Note</button>");
+      $("#notes").append("<button data-id='" + data._id + "' id='deletenote'>delete Note</button>");
 
       // If there's a note in the article
       if (data.note) {
@@ -99,3 +100,21 @@ $(document).on("click", ".deleted", function(e) {
 
 
 }) // end of delete click event
+
+$(document).on("click", "#deletenote", function(e) {
+  e.preventDefault();
+  console.log("clicked from deleted note button");
+  let id=$(this).data("id");
+  console.log(id);
+
+  $.ajax({
+    url:'/deleteNote/'+id,
+    type: 'DELETE',
+    success: function(response){
+      window.location.href='/savedArticles';
+    },
+    error : function (error) {
+      console.log(error);
+    }
+  });
+});
