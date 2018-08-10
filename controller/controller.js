@@ -21,6 +21,33 @@ router.get('/', function(req, res) {
 
 })
 
+router.get('/clearAll', function(req, res) {
+  db.Article.remove({},function(err,doc){
+    if(err) console.log(err);
+    else console.log("remove all articles");
+
+    
+  });
+  res.redirect("/")
+});
+   
+router.delete('/deleteArticle/id:', function(req, res) {
+  console.log("hello delete");
+  db.Article.findByIdAndRemove(req.params.id,(err,doc)=>{
+    if(err) {
+      console.log(err);
+      return res.status(500).send(err);
+    }
+    const response= {
+      message: "article successfully deleted",
+      id: db.article._id,
+    };
+    return res.status(200).send(response).redirect("/");
+    
+  });
+  
+});
+
 // A GET route for scraping the echoJS website
 router.get("/scrape", function(req, res) {
     // First, we grab the body of the html with request

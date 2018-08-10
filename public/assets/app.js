@@ -78,3 +78,24 @@ $(document).on("click", "#savenote", function() {
   $("#titleinput").val("");
   $("#bodyinput").val("");
 });
+
+
+$(document).on("click", ".deleted", function(e) {
+  e.preventDefault();
+  console.log("clicked from deleted button");
+  let id=$(this).attr("id");
+  console.log(id);
+
+  $.ajax({
+    url:'/deleteArticle/'+id,
+    type: 'DELETE',
+    success: function(response){
+      window.location.href='/savedArticles';
+    },
+    error : function (error) {
+      console.log(error);
+    }
+  });
+
+
+}) // end of delete click event
